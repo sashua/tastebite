@@ -2,8 +2,12 @@
 
 import colors from 'tailwindcss/colors';
 
-export default {
-  content: ['./app/**/*.{js,jsx,ts,tsx}'],
+module.exports = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    './app/**/*.{js,ts,jsx,tsx}',
+  ],
   theme: {
     borderColor: ({ theme }) => ({
       ...theme('colors'),
@@ -45,8 +49,8 @@ export default {
       padding: '15px',
     },
     fontFamily: {
-      primary: 'Inter, sans-serif',
-      secondary: "'Playfair Display', serif",
+      primary: ['var(--font-inter)', 'sans-serif'],
+      secondary: ['var(--font-playfair-display)', 'serif'],
     },
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
