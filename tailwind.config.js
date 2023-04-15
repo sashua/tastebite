@@ -37,7 +37,7 @@ module.exports = {
         contrast: colors.white,
       },
       secondary: '#ffd7c9',
-      tetriary: '#e3f1ff',
+      tertiary: '#e3f1ff',
       neutral: {
         light: '#f9f9f9',
         DEFAULT: '#e8e8e8',

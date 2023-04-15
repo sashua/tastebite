@@ -1,5 +1,6 @@
+import { Header } from './components';
 import { fontInter, fontPlayfairDisplay } from './fonts';
-import './global.css';
+import './tailwind.css';
 
 export const metadata = {
   title: 'Tastebite',
@@ -18,8 +19,8 @@ export default function RootLayout({ children }: Props): JSX.Element {
       className={`${fontInter.variable} ${fontPlayfairDisplay.variable}`}
     >
       <body className="font-primary">
-        <header>Header</header>
-        <main>{children}</main>
+        <Header />
+        <main className="mt-14">{children}</main>
         <footer>Footer</footer>
       </body>
     </html>
