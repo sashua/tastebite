@@ -5,13 +5,20 @@ import colors from 'tailwindcss/colors';
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
+    './common/components/**/*.{js,ts,jsx,tsx}',
     './app/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    aspectRatio: {
+      auto: 'auto',
+      square: '1 / 1',
+      classic: '4 / 3',
+      photo: '3 / 2',
+      video: '16 / 9',
+    },
     borderColor: ({ theme }) => ({
       ...theme('colors'),
-      DEFAULT: theme('colors.neutral', 'currentColor'),
+      DEFAULT: theme('colors.neutral.DEFAULT', 'currentColor'),
     }),
     borderRadius: {
       none: '0px',

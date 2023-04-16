@@ -20,7 +20,7 @@ export default function RootLayout({ children }: Props): JSX.Element {
     >
       <body className="font-primary">
         <Header />
-        <main className="mt-14">{children}</main>
+        <main className="mt-16">{children}</main>
         <footer>Footer</footer>
       </body>
     </html>
