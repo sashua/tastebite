@@ -1,7 +1,28 @@
 export interface Recipe {
-  id: string;
-  title: string;
+  id?: string;
+  user: null;
+  author: { name: string };
+  collection: string;
+
+  name: string;
   description: string;
-  rating: number;
-  image: string;
+  imageFile: string;
+
+  cookInfo: {
+    prepTime: number;
+    cookTime: number;
+    difficulty: number;
+    servings: number;
+  };
+
+  statistics: {
+    averageRating: number;
+    averageRepeat: number;
+    totalFeedbacks: number;
+  };
+
+  tags: string[];
+
+  createdAt: string;
+  updatedAt?: string;
 }

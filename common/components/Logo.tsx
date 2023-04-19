@@ -4,7 +4,7 @@ import Link from 'next/link';
 import logoImage from '~/assets/logo.svg';
 
 interface Props {
-  className: string;
+  className?: string;
 }
 
 export function Logo({ className }: Props): JSX.Element {
