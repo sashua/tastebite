@@ -9,9 +9,14 @@ interface Props {
 
 export function Author({ className, name, avatarUrl }: Props): JSX.Element {
   return (
-    <div className={clsx('flex items-center gap-1.5', className)}>
+    <div
+      className={clsx(
+        'flex items-center gap-1.5 text-xs leading-none',
+        className
+      )}
+    >
       <Avatar name={name} src={avatarUrl} />
-      <span className="text-xs">{name}</span>
+      {name}
     </div>
   );
 }

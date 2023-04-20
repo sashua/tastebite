@@ -1,17 +1,13 @@
-import {
-  formatDistanceToNowStrict,
-  formatDuration,
-  intervalToDuration,
-} from 'date-fns';
 import { Route } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { RiCalendarLine, RiTimerLine } from 'react-icons/ri';
 import { routes } from '~/common/constants';
+import { formatDateToNow, formatDuration } from '~/common/helpers';
 import { Recipe } from '~/common/types';
 import { Author } from './Author';
-import { Chip } from './Chip';
 import { Rating } from './Rating';
+import { Tag } from './Tag';
 
 interface Props {
   recipe: Recipe;
@@ -20,15 +16,8 @@ interface Props {
 export function RecipeCard({
   recipe: { id, name, author, imageFile, cookInfo, statistics, createdAt },
 }: Props): JSX.Element {
-  const totalTimeText = formatDuration(
-    intervalToDuration({
-      start: 0,
-      end: (cookInfo.prepTime + cookInfo.cookTime) * 60 * 1000,
-    })
-  );
-  const createdAtText = formatDistanceToNowStrict(new Date(createdAt), {
-    addSuffix: true,
-  });
+  const totalTimeText = formatDuration(cookInfo.prepTime + cookInfo.cookTime);
+  const createdAtText = formatDateToNow(createdAt);
 
   return (
     <Link
@@ -47,9 +36,9 @@ export function RecipeCard({
         <Rating value={statistics.averageRating} />
         <h3 className="mb-4 mt-2 text-xl font-semibold">{name}</h3>
         <Author name={author.name} avatarUrl="" />
-        <div className="mt-12 flex justify-end gap-6 text-neutral-dark">
-          <Chip icon={RiCalendarLine} text={createdAtText} />
-          <Chip icon={RiTimerLine} text={totalTimeText} />
+        <div className="mt-12 flex justify-end gap-6 text-neutral-900">
+          <Tag icon={RiCalendarLine}>{createdAtText}</Tag>
+          <Tag icon={RiTimerLine}>{totalTimeText}</Tag>
         </div>
       </div>
     </Link>

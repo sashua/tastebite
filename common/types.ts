@@ -23,6 +23,23 @@ export interface Recipe {
 
   tags: string[];
 
+  ingredients: Ingredient[];
+
+  instructions: Instruction[];
+
   createdAt: string;
   updatedAt?: string;
+}
+
+export interface Ingredient {
+  quantity: number;
+  measure: string;
+  name: string;
+  comment: string;
+  section: string;
+}
+
+export interface Instruction {
+  text: string;
+  section: string;
 }

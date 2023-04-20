@@ -10,11 +10,9 @@ export function Rating({ className, value = 0 }: Props): JSX.Element {
   return (
     <p className={clsx('flex gap-1 text-accent', className)}>
       <span className="sr-only">{`Rating ${value} out of 5`}</span>
-      {[...Array(5)].map((_, i) => (
-        <span key={i}>
-          {Math.round(value) > i ? <RiStarFill /> : <RiStarLine />}
-        </span>
-      ))}
+      {[...Array(5)].map((_, i) =>
+        Math.round(value) > i ? <RiStarFill key={i} /> : <RiStarLine key={i} />
+      )}
     </p>
   );
 }

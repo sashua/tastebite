@@ -15,16 +15,16 @@ export function Avatar({ className, name, src }: Props): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
 
   const classes = {
-    wrapper: clsx('relative h-8 w-8 overflow-hidden rounded-full', className),
+    root: clsx('relative h-8 w-8 overflow-hidden rounded-full', className),
     image: clsx('object-cover', isLoading && 'opacity-0'),
   };
 
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.root}>
       {isLoading && (
         <div
           className={
-            'line-h flex h-full w-full items-center justify-center bg-secondary text-xs font-medium text-white'
+            'flex h-full w-full items-center justify-center bg-accent-200 text-xs font-semibold leading-none text-white'
           }
         >
           {getNameInitials(name)}
