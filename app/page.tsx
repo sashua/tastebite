@@ -2,7 +2,7 @@ import { RecipeCard } from '~/common/components/RecipeCard';
 import { getRecipes } from '~/common/utils';
 
 export default function HomePage(): JSX.Element {
-  const recipes = getRecipes();
+  const recipes = getRecipes(6);
 
   return (
     <section className="py-4">

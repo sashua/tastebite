@@ -1,29 +1,23 @@
 import clsx from 'clsx';
-import { IconType } from 'react-icons';
-import { defaultTagIcon, defaultTagIcons } from '../constants';
+import { getTagIcon } from '~/common/helpers';
 import { Tag } from './Tag';
 
 interface Props {
   className?: string;
   tags: string[];
-  tagIcons?: Record<string, IconType>;
   iconClass?: string;
 }
 
-export function TagsList({
-  className,
-  tags,
-  tagIcons = defaultTagIcons,
-  iconClass,
-}: Props): JSX.Element {
+export function TagsList({ className, tags, iconClass }: Props): JSX.Element {
+  const classes = {
+    root: clsx('flex flex-wrap gap-2', className),
+  };
+
   return (
-    <ul className={clsx('flex flex-wrap gap-2', className)}>
+    <ul className={classes.root}>
       {tags.map((text, i) => (
         <li key={i}>
-          <Tag
-            icon={tagIcons?.[text.toLowerCase()] ?? defaultTagIcon}
-            iconClass={iconClass}
-          >
+          <Tag icon={getTagIcon(text)} iconClass={iconClass}>
             {text}
           </Tag>
         </li>

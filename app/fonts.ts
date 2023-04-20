@@ -2,7 +2,7 @@ import { Inter, Playfair_Display } from 'next/font/google';
 
 export const fontInter = Inter({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: ['300', '400', '500', '600'],
   variable: '--font-inter',
 });
 

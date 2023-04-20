@@ -10,7 +10,7 @@
   }
 
   button {
-    @apply border-none;
+    @apply border border-transparent;
   }
 
   svg {
