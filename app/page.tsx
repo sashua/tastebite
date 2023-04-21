@@ -1,16 +1,16 @@
-import { RecipeCard } from '~/common/components/RecipeCard';
+import { RecipeCard } from '~/common/components';
 import { getRecipes } from '~/common/utils';
 
 export default function HomePage(): JSX.Element {
   const recipes = getRecipes(6);
 
   return (
-    <section className="py-4">
+    <section className="pb-10 pt-6">
       <div className="container">
         <ul className="space-y-6">
-          {recipes.map(recipe => (
-            <li key={recipe.id}>
-              <RecipeCard recipe={recipe} />
+          {recipes.map(item => (
+            <li key={item.id}>
+              <RecipeCard recipe={item} />
             </li>
           ))}
         </ul>

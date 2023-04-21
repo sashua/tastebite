@@ -24,10 +24,10 @@ export function MobileMenu(): JSX.Element {
               icon={open ? RiCloseLine : RiMenuLine}
               aria-label="open mobile menu"
             />
-            <Popover.Overlay className="fixed inset-x-0 bottom-0 top-16 bg-black/30" />
+            <Popover.Overlay className="fixed inset-x-0 bottom-0 top-14 bg-black/30" />
             <Popover.Panel
               as="ul"
-              className="shadow-modal container fixed inset-x-0 top-16 flex flex-col gap-6 bg-white py-4 text-sm"
+              className="container fixed inset-x-0 top-14 flex flex-col gap-6 bg-white pb-10 pt-6 text-sm shadow"
             >
               {links.map((item, i) => (
                 <li key={i}>

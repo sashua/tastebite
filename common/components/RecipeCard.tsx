@@ -11,14 +11,15 @@ import { Rating } from './Rating';
 import { Tag } from './Tag';
 
 interface Props {
+  className?: string;
   recipe: Recipe;
   variant?: 'default' | 'simple';
 }
 
-export function RecipeCard({ recipe, variant }: Props): JSX.Element {
+export function RecipeCard({ className, recipe, variant }: Props): JSX.Element {
   const { id, name, author, imageFile, cookInfo, statistics, createdAt } =
     recipe;
-  const classes = getClasses(variant);
+  const classes = getClasses(variant, className);
   const isVisible = getIsVisible(variant);
 
   const href = `${routes.recipes}/${id}` as Route;
@@ -54,22 +55,32 @@ function getIsVisible(v: Props['variant'] = 'default') {
   };
 }
 
-function getClasses(v: Props['variant'] = 'default') {
+function getClasses(
+  v: Props['variant'] = 'default',
+  className: Props['className']
+) {
   return {
-    root: clsx('group block overflow-hidden transition-shadow', {
-      'rounded-xl shadow hover:shadow-md': v === 'default',
-      'rounded shadow-sm hover:shadow': v === 'simple',
-    }),
+    root: clsx(
+      'group block overflow-hidden transition-shadow',
+      {
+        'rounded-xl shadow hover:shadow-md': v === 'default',
+        'rounded shadow-sm hover:shadow': v === 'simple',
+      },
+      className
+    ),
     imageWrap: 'relative aspect-classic overflow-hidden',
     image: 'object-cover transition-transform group-hover:scale-[1.01]',
     bottomWrap: clsx('border-t', {
       'p-6': v === 'default',
-      'px-2 pt-2 pb-3': v === 'simple',
+      'px-2 pb-3 pt-2': v === 'simple',
     }),
-    title: clsx('font-semibold', {
-      'mb-4 mt-2 text-xl': v === 'default',
-      'text-sm text-center leading-snug': v === 'simple',
-    }),
+    title: clsx(
+      'font-semibold underline decoration-transparent underline-offset-2 transition-colors group-hover:decoration-accent',
+      {
+        'mb-4 mt-2 text-xl': v === 'default',
+        'text-center text-sm leading-snug': v === 'simple',
+      }
+    ),
     tagsWrap: 'mt-8 flex justify-end gap-6 text-neutral-900',
   };
 }

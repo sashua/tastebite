@@ -10,7 +10,7 @@ interface Props {
 
 export function TagsList({ className, tags, iconClass }: Props): JSX.Element {
   const classes = {
-    root: clsx('flex flex-wrap gap-2', className),
+    root: clsx('flex flex-wrap gap-4', className),
   };
 
   return (

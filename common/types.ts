@@ -1,5 +1,12 @@
-export interface Recipe {
-  id?: string;
+export type Collection = {
+  id: string;
+  name: string;
+  description: string;
+  imageFile: string;
+};
+
+export type Recipe = {
+  id: string;
   user: null;
   author: { name: string };
   collection: string;
@@ -29,17 +36,17 @@ export interface Recipe {
 
   createdAt: string;
   updatedAt?: string;
-}
+};
 
-export interface Ingredient {
+export type Ingredient = {
   quantity: number;
   measure: string;
   name: string;
   comment: string;
   section: string;
-}
+};
 
-export interface Instruction {
+export type Instruction = {
   text: string;
   section: string;
-}
+};

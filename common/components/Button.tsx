@@ -14,11 +14,11 @@ export function Button({ className, variant, children }: Props): JSX.Element {
 function getClasses(v: Props['variant'] = 'accent', className?: string) {
   return {
     root: clsx(
-      'rounded px-6 py-3 text-lg active:translate-y-px transition',
+      'rounded px-6 py-3 text-lg shadow transition active:translate-y-px active:shadow-sm',
       {
-        'border-accent text-white bg-accent hover:bg-accent-400 hover:border-accent-400':
+        'border-accent bg-accent text-white hover:border-accent-400 hover:bg-accent-400':
           v === 'accent',
-        'border-black text-black bg-white hover:bg-secondary-100':
+        'border-black bg-white text-black hover:bg-secondary-100':
           v === 'bordered',
       },
       className

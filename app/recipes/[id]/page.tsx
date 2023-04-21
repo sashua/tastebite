@@ -1,11 +1,17 @@
 import Image from 'next/image';
-import { RiCalendarLine, RiMailLine } from 'react-icons/ri';
-import { CookInfo } from '~/app/recipes/[id]/CookInfo';
-import { Author, Button, Input, Rating, Tag } from '~/common/components';
-import { RecipeCard } from '~/common/components/RecipeCard';
-import { TagsList } from '~/common/components/TagsList';
+import { RiCalendarLine } from 'react-icons/ri';
+import {
+  Author,
+  Button,
+  Rating,
+  RecipeCard,
+  Subscribe,
+  Tag,
+  TagsList,
+} from '~/common/components';
 import { formatDateToNow } from '~/common/helpers';
 import { getRecipe, getRecipes } from '~/common/utils';
+import { CookInfo } from './CookInfo';
 import { IngredientsList } from './IngredientsList';
 import { InstructionsList } from './InstructinonsList';
 
@@ -38,16 +44,16 @@ export default function RecipePage({ params: { id } }: Props): JSX.Element {
     <>
       <section className="pt-6">
         <div className="container">
-          <h1 className="mb-4 font-secondary text-3xl font-bold">{name}</h1>
+          <h1 className="mb-6 font-secondary text-3xl font-bold">{name}</h1>
           <div className="mb-4 flex items-center justify-between gap-6">
             <Author name={author.name} avatarUrl="" />
             <Tag icon={RiCalendarLine}>{formatDateToNow(createdAt)}</Tag>
           </div>
-          <div className="mb-6 flex items-center gap-2">
+          <div className="mb-6 flex items-center gap-2 border-b pb-6">
             <Rating value={statistics.averageRating} />
             <span className="text-sm">{statistics.totalFeedbacks} ratings</span>
           </div>
-          <p className="mb-6 border-t pt-6 text-sm">{description}</p>
+          <p className="mb-6 text-sm">{description}</p>
           <div className="relative mb-6 aspect-classic overflow-hidden rounded-md">
             <Image
               className="object-cover"
@@ -100,7 +106,9 @@ export default function RecipePage({ params: { id } }: Props): JSX.Element {
           </h2>
           <ul className="grid grid-cols-2 gap-6">
             {similarRecipes.map(item => (
-              <RecipeCard key={item.id} recipe={item} variant="simple" />
+              <li key={item.id}>
+                <RecipeCard className="h-full" recipe={item} variant="simple" />
+              </li>
             ))}
           </ul>
         </div>
@@ -108,30 +116,7 @@ export default function RecipePage({ params: { id } }: Props): JSX.Element {
 
       <section className="py-10">
         <div className="container">
-          <div className="rounded-xl bg-accent-200 px-9 py-12 text-center shadow-md">
-            <h2 className="mb-2 font-secondary text-4xl font-bold">
-              Deliciousness to your inbox
-            </h2>
-            <p className="mb-4 font-light">
-              Enjoy weekly hand picked recipes and recommendations
-            </p>
-            <form className="mb-4">
-              <Input
-                className="mb-3 w-full"
-                icon={RiMailLine}
-                placeholder="Email Address"
-              />
-              <Button className="w-full uppercase" variant="accent">
-                Join
-              </Button>
-            </form>
-            <p className="text-xs">
-              By joining our newsletter you agree to our
-              <span className="block cursor-pointer underline decoration-accent underline-offset-4 transition-colors hover:text-accent">
-                Terms and Conditions
-              </span>
-            </p>
-          </div>
+          <Subscribe />
         </div>
       </section>
     </>

@@ -19,9 +19,9 @@ export default function RootLayout({ children }: Props): JSX.Element {
       lang="en"
       className={`${fontInter.variable} ${fontPlayfairDisplay.variable}`}
     >
-      <body className="font-primary">
+      <body className="flex min-h-screen flex-col font-primary">
         <Header />
-        <main className="mt-14">{children}</main>
+        <main className="mt-14 grow">{children}</main>
         <Footer />
       </body>
     </html>
