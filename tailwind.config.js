@@ -87,11 +87,11 @@ module.exports = {
       secondary: ['var(--font-playfair-display)', 'serif'],
     },
     fontSize: {
-      xs: ['0.75rem', { lineHeight: '1.125rem' }],
-      sm: ['0.875rem', { lineHeight: '1.375rem' }],
-      base: ['1rem', { lineHeight: '1.625rem' }],
-      lg: ['1.125rem', { lineHeight: '1.875rem' }],
-      xl: ['1.25rem', { lineHeight: '2.125rem' }],
+      'xs': ['0.75rem', { lineHeight: '1.125rem' }],
+      'sm': ['0.875rem', { lineHeight: '1.375rem' }],
+      'base': ['1rem', { lineHeight: '1.625rem' }],
+      'lg': ['1.125rem', { lineHeight: '1.875rem' }],
+      'xl': ['1.25rem', { lineHeight: '2.125rem' }],
       '2xl': ['1.5rem', { lineHeight: '2.375rem' }],
       '3xl': ['1.875rem', { lineHeight: '2.625rem' }],
       '4xl': ['2.25rem', { lineHeight: '2.875rem' }],
@@ -109,5 +109,10 @@ module.exports = {
     },
     extend: {},
   },
-  plugins: [require('@headlessui/tailwindcss')],
+  plugins: [
+    require('@tailwindcss/forms')({
+      strategy: 'base',
+    }),
+    require('@headlessui/tailwindcss'),
+  ],
 };

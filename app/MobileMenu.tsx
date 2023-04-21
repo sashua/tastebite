@@ -3,12 +3,12 @@
 import { Popover } from '@headlessui/react';
 import { Fragment } from 'react';
 import { RiCloseLine, RiMenuLine } from 'react-icons/ri';
-import { IconButton, NavLink } from '~/common/components';
+import { IconButton, Link } from '~/common/components';
 import { routes } from '~/common/constants';
 
 const links = [
   { name: 'Homepage', href: routes.homepage },
-  { name: 'Categories', href: routes.categories },
+  { name: 'Collections', href: routes.collections },
   { name: 'Search', href: routes.search },
   { name: 'About', href: routes.about },
 ];
@@ -27,13 +27,13 @@ export function MobileMenu(): JSX.Element {
             <Popover.Overlay className="fixed inset-x-0 bottom-0 top-16 bg-black/30" />
             <Popover.Panel
               as="ul"
-              className="container fixed inset-x-0 top-16 flex flex-col gap-6 bg-white py-4 text-sm shadow-modal"
+              className="shadow-modal container fixed inset-x-0 top-16 flex flex-col gap-6 bg-white py-4 text-sm"
             >
               {links.map((item, i) => (
                 <li key={i}>
-                  <NavLink href={item.href} onClick={close}>
+                  <Link href={item.href} onClick={close}>
                     {item.name}
-                  </NavLink>
+                  </Link>
                 </li>
               ))}
             </Popover.Panel>

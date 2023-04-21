@@ -4,7 +4,7 @@ export * from './Checkbox';
 export * from './IconButton';
 export * from './IconLink';
 export * from './Input';
+export * from './Link';
 export * from './Logo';
-export * from './NavLink';
 export * from './Rating';
 export * from './Tag';

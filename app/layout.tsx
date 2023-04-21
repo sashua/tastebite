@@ -1,3 +1,4 @@
+import { Footer } from './Footer';
 import { Header } from './Header';
 import { fontInter, fontPlayfairDisplay } from './fonts';
 import './tailwind.css';
@@ -21,7 +22,7 @@ export default function RootLayout({ children }: Props): JSX.Element {
       <body className="font-primary">
         <Header />
         <main className="mt-14">{children}</main>
-        <footer>Footer</footer>
+        <Footer />
       </body>
     </html>
   );
