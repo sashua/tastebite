@@ -10,16 +10,21 @@ import { Author } from './Author';
 import { Rating } from './Rating';
 import { Tag } from './Tag';
 
-interface Props {
+type RecipeCardVariant = 'default' | 'simple';
+
+interface RecipeCardProps {
   className?: string;
-  recipe: Recipe;
-  variant?: 'default' | 'simple';
+  data: Recipe;
+  variant?: RecipeCardVariant;
 }
 
-export function RecipeCard({ className, recipe, variant }: Props): JSX.Element {
-  const { id, name, author, imageFile, cookInfo, statistics, createdAt } =
-    recipe;
-  const classes = getClasses(variant, className);
+export function RecipeCard({
+  className,
+  data,
+  variant = 'default',
+}: RecipeCardProps): JSX.Element {
+  const { id, name, author, imageFile, cookInfo, statistics, createdAt } = data;
+  const classes = getClasses({ variant, className });
   const isVisible = getIsVisible(variant);
 
   const href = `${routes.recipes}/${id}` as Route;
@@ -47,38 +52,38 @@ export function RecipeCard({ className, recipe, variant }: Props): JSX.Element {
   );
 }
 
-function getIsVisible(v: Props['variant'] = 'default') {
+function getIsVisible(variant: RecipeCardVariant) {
   return {
-    rating: v === 'default',
-    author: v === 'default',
-    tags: v === 'default',
+    rating: variant === 'default',
+    author: variant === 'default',
+    tags: variant === 'default',
   };
 }
 
-function getClasses(
-  v: Props['variant'] = 'default',
-  className: Props['className']
-) {
+function getClasses({
+  className,
+  variant,
+}: Pick<RecipeCardProps, 'className' | 'variant'>) {
   return {
     root: clsx(
       'group block overflow-hidden transition-shadow',
       {
-        'rounded-xl shadow hover:shadow-md': v === 'default',
-        'rounded shadow-sm hover:shadow': v === 'simple',
+        'rounded-xl shadow hover:shadow-md': variant === 'default',
+        'rounded shadow-sm hover:shadow': variant === 'simple',
       },
       className
     ),
     imageWrap: 'relative aspect-classic overflow-hidden',
     image: 'object-cover transition-transform group-hover:scale-[1.01]',
     bottomWrap: clsx('border-t', {
-      'p-6': v === 'default',
-      'px-2 pb-3 pt-2': v === 'simple',
+      'p-6': variant === 'default',
+      'px-2 pb-3 pt-2': variant === 'simple',
     }),
     title: clsx(
       'font-semibold underline decoration-transparent underline-offset-2 transition-colors group-hover:decoration-accent',
       {
-        'mb-4 mt-2 text-xl': v === 'default',
-        'text-center text-sm leading-snug': v === 'simple',
+        'mb-4 mt-2 text-xl': variant === 'default',
+        'text-center text-sm leading-snug': variant === 'simple',
       }
     ),
     tagsWrap: 'mt-8 flex justify-end gap-6 text-neutral-900',

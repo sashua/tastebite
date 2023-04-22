@@ -1,13 +1,17 @@
 import clsx from 'clsx';
 import { Avatar } from './Avatar';
 
-interface Props {
+interface AuthorProps {
   className?: string;
   name: string;
   avatarUrl?: string;
 }
 
-export function Author({ className, name, avatarUrl }: Props): JSX.Element {
+export function Author({
+  className,
+  name,
+  avatarUrl,
+}: AuthorProps): JSX.Element {
   const classes = {
     root: clsx('flex items-center gap-1.5 text-xs leading-none', className),
   };

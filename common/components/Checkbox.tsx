@@ -8,7 +8,7 @@ import {
   RiCheckboxCircleFill,
 } from 'react-icons/ri';
 
-interface Props extends SwitchProps<'button'> {
+interface CheckboxProps extends SwitchProps<'button'> {
   checkClass?: string;
   children?: ReactNode;
 }
@@ -18,7 +18,7 @@ export function Checkbox({
   checkClass,
   children,
   ...props
-}: Props): JSX.Element {
+}: CheckboxProps): JSX.Element {
   const classes = {
     root: clsx('flex items-center text-left', className),
     checkbox: clsx('mr-1.5 ui-checked:text-accent shrink-0', checkClass),

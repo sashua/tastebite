@@ -3,14 +3,14 @@ import { RiMailLine } from 'react-icons/ri';
 import { Button } from './Button';
 import { Input } from './Input';
 
-interface Props {
+interface SubscribeProps {
   className?: string;
 }
 
-export function Subscribe({ className }: Props): JSX.Element {
+export function Subscribe({ className }: SubscribeProps): JSX.Element {
   const classes = {
     root: clsx(
-      'rounded-xl bg-accent-200 px-9 py-12 text-center shadow-md',
+      'rounded-xl bg-accent-200 px-8 py-12 text-center shadow-md',
       className
     ),
   };
@@ -35,7 +35,7 @@ export function Subscribe({ className }: Props): JSX.Element {
       </form>
       <p className="text-xs">
         By joining our newsletter you agree to our
-        <span className="block cursor-pointer underline decoration-accent underline-offset-4 transition-colors hover:text-accent">
+        <span className="block cursor-pointer underline decoration-accent underline-offset-2 transition-colors hover:text-accent">
           Terms and Conditions
         </span>
       </p>

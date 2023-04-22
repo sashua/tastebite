@@ -1,11 +1,13 @@
 import { RecipeCard } from '~/common/components';
 import { getCollection, getRecipesByCollectionName } from '~/common/utils';
 
-interface Props {
+interface CollectionPageProps {
   params: { id: string };
 }
 
-export default function CollectionPage({ params: { id } }: Props): JSX.Element {
+export default function CollectionPage({
+  params: { id },
+}: CollectionPageProps): JSX.Element {
   const collection = getCollection(id);
   const recipes = getRecipesByCollectionName(collection?.name ?? '', 12);
 
@@ -16,14 +18,14 @@ export default function CollectionPage({ params: { id } }: Props): JSX.Element {
   const { name, description } = collection;
 
   return (
-    <section className="pb-10 pt-6">
+    <section className="section">
       <div className="container">
-        <h1 className="mb-4 font-secondary text-3xl font-bold">{name}</h1>
-        <p className="mb-6 border-b pb-6 text-sm">{description}</p>
-        <ul className="grid grid-cols-2 gap-6">
+        <h1 className="title-page">{name}</h1>
+        <p className="mb-6 text-sm">{description}</p>
+        <ul className="list-sm">
           {recipes.map(item => (
             <li key={item.id}>
-              <RecipeCard className="h-full" recipe={item} variant="simple" />
+              <RecipeCard className="h-full" data={item} variant="simple" />
             </li>
           ))}
         </ul>

@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import { RiStarFill, RiStarLine } from 'react-icons/ri';
 
-interface Props {
+interface RatingProps {
   className?: string;
   value?: number;
 }
 
-export function Rating({ className, value = 0 }: Props): JSX.Element {
+export function Rating({ className, value = 0 }: RatingProps): JSX.Element {
   const classes = {
     root: clsx('flex gap-1 text-accent', className),
   };

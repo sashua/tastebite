@@ -5,13 +5,13 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { getNameInitials } from '~/common/helpers';
 
-interface Props {
+interface AvatarProps {
   className?: string;
   name: string;
   src?: string;
 }
 
-export function Avatar({ className, name, src }: Props): JSX.Element {
+export function Avatar({ className, name, src }: AvatarProps): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
 
   const classes = {

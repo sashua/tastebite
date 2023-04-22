@@ -1,13 +1,18 @@
+import clsx from 'clsx';
 import { Recipe } from '~/common/types';
 
-interface Props {
-  instructions: Recipe['instructions'];
+interface InstructionsListProps {
+  className?: string;
+  data: Recipe['instructions'];
 }
 
-export function InstructionsList({ instructions }: Props): JSX.Element {
+export function InstructionsList({
+  className,
+  data,
+}: InstructionsListProps): JSX.Element {
   return (
-    <ul className="list-inside space-y-6 text-sm">
-      {instructions.map((item, i) => (
+    <ul className={clsx('list-inside space-y-6 text-sm', className)}>
+      {data.map((item, i) => (
         <li className="flex gap-2" key={i}>
           <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-semibold leading-none text-white">
             {i + 1}

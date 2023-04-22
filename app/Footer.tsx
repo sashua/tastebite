@@ -30,7 +30,7 @@ export function Footer(): JSX.Element {
             </a>
           ))}
         </div>
-        <p className="border-t py-6 text-center text-xs text-neutral-700">
+        <p className="border-t py-4 text-center text-xs text-neutral-700">
           © 2023 Tastebite - All rights reserved
         </p>
       </div>

@@ -9,11 +9,11 @@ export const metadata = {
     'Discover delicious and easy-to-make recipes on our food website! From appetizers to desserts, our recipes are perfect for every occasion. Browse through our collection of tasty dishes and impress your guests with your cooking skills.',
 };
 
-interface Props {
+interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-export default function RootLayout({ children }: Props): JSX.Element {
+export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
   return (
     <html
       lang="en"
@@ -21,7 +21,7 @@ export default function RootLayout({ children }: Props): JSX.Element {
     >
       <body className="flex min-h-screen flex-col font-primary">
         <Header />
-        <main className="mt-14 grow">{children}</main>
+        <main className="mt-14 grow py-4">{children}</main>
         <Footer />
       </body>
     </html>

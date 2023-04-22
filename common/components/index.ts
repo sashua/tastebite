@@ -5,7 +5,6 @@ export * from './CollectionCard';
 export * from './IconButton';
 export * from './IconLink';
 export * from './Input';
-export * from './Link';
 export * from './Logo';
 export * from './Rating';
 export * from './RecipeCard';

@@ -2,8 +2,8 @@ import { Recipe } from '~/common/types';
 import collections from '~/public/collections.json';
 import recipes from '~/public/recipes.json';
 
-export function getCollections() {
-  return collections;
+export function getCollections(limit?: number) {
+  return limit ? collections.slice(0, limit) : collections;
 }
 
 export function getCollection(id: string) {

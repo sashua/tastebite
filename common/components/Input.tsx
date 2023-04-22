@@ -2,11 +2,15 @@ import clsx from 'clsx';
 import { ComponentPropsWithoutRef } from 'react';
 import { IconType } from 'react-icons';
 
-interface Props extends ComponentPropsWithoutRef<'input'> {
+interface InputProps extends ComponentPropsWithoutRef<'input'> {
   icon?: IconType;
 }
 
-export function Input({ className, icon: Icon, ...props }: Props): JSX.Element {
+export function Input({
+  className,
+  icon: Icon,
+  ...props
+}: InputProps): JSX.Element {
   const classes = {
     root: clsx('relative block rounded shadow-sm', className),
     input: clsx(

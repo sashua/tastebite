@@ -9,17 +9,17 @@ import { difficulties } from '~/common/constants';
 import { formatDuration } from '~/common/helpers';
 import { Recipe } from '~/common/types';
 
-interface Props {
+interface CookInfoProps {
   className?: string;
-  info: Recipe['cookInfo'];
+  data: Recipe['cookInfo'];
 }
 
-export function CookInfo({ className, info }: Props): JSX.Element {
-  const preparedInfo = prepareInfo(info);
+export function CookInfo({ className, data }: CookInfoProps): JSX.Element {
+  const preparedData = prepareData(data);
 
   return (
     <ul className={clsx('grid grid-cols-2 gap-x-1 gap-y-2', className)}>
-      {preparedInfo
+      {preparedData
         .filter(item => item.isVisible)
         .map(({ caption, text, icon: Icon }) => (
           <li key={caption} className="flex items-center">
@@ -38,12 +38,12 @@ export function CookInfo({ className, info }: Props): JSX.Element {
   );
 }
 
-function prepareInfo({
+function prepareData({
   prepTime,
   cookTime,
   difficulty,
   servings,
-}: Props['info']) {
+}: CookInfoProps['data']) {
   return [
     {
       isVisible: prepTime > 0,

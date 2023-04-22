@@ -2,13 +2,17 @@ import clsx from 'clsx';
 import { getTagIcon } from '~/common/helpers';
 import { Tag } from './Tag';
 
-interface Props {
+interface TagsListProps {
   className?: string;
   tags: string[];
   iconClass?: string;
 }
 
-export function TagsList({ className, tags, iconClass }: Props): JSX.Element {
+export function TagsList({
+  className,
+  tags,
+  iconClass,
+}: TagsListProps): JSX.Element {
   const classes = {
     root: clsx('flex flex-wrap gap-4', className),
   };

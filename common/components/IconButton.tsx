@@ -2,12 +2,12 @@ import clsx from 'clsx';
 import { ComponentPropsWithoutRef, forwardRef } from 'react';
 import { IconType } from 'react-icons';
 
-interface Props extends ComponentPropsWithoutRef<'button'> {
+interface IconButtonProps extends ComponentPropsWithoutRef<'button'> {
   icon: IconType;
   iconClass?: string;
 }
 
-export const IconButton = forwardRef<HTMLButtonElement, Props>(
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   function IconButton(
     { className, icon: Icon, iconClass, ...props },
     ref

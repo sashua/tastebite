@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import Link, { LinkProps } from 'next/link';
 import { IconType } from 'react-icons';
 
-interface Props extends LinkProps<string> {
+interface IconLinkProps extends LinkProps<string> {
   icon: IconType;
   iconClass?: string;
 }
@@ -12,7 +12,7 @@ export function IconLink({
   icon: Icon,
   iconClass,
   ...props
-}: Props): JSX.Element {
+}: IconLinkProps): JSX.Element {
   const classes = {
     root: clsx(
       'inline-block rounded-full p-1 transition-colors hover:text-accent',
@@ -22,7 +22,7 @@ export function IconLink({
   };
 
   return (
-    <Link {...props} className={classes.root}>
+    <Link className={classes.root} {...props}>
       <Icon className={classes.icon} />
     </Link>
   );
