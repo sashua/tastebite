@@ -1,10 +1,22 @@
-import { RiFacebookFill, RiInstagramFill, RiTwitterFill } from 'react-icons/ri';
+import { RiAtFill, RiGithubFill, RiLinkedinBoxFill } from 'react-icons/ri';
 import { Logo } from '~/common/components';
 
 const socialLinks = [
-  { label: 'Facebook', href: 'https://facebook.com', icon: RiFacebookFill },
-  { label: 'Twitter', href: 'https://twitter.com', icon: RiTwitterFill },
-  { label: 'Instagram', href: 'https://instagram.com', icon: RiInstagramFill },
+  {
+    label: 'Linkedin',
+    href: 'https://www.linkedin.com/in/sashua/',
+    icon: RiLinkedinBoxFill,
+  },
+  {
+    label: 'Github',
+    href: 'https://github.com/sashua/tastebite',
+    icon: RiGithubFill,
+  },
+  {
+    label: 'Email',
+    href: 'mailto:sereda.san@gmail.com',
+    icon: RiAtFill,
+  },
 ];
 
 export function Footer(): JSX.Element {
@@ -24,6 +36,7 @@ export function Footer(): JSX.Element {
               key={i}
               className="inline-block rounded-full p-2 transition-colors hover:text-accent-400"
               href={href}
+              target="_blank"
               aria-label={label}
             >
               <Icon className="h-6 w-6" />

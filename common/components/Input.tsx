@@ -14,7 +14,7 @@ export function Input({
   const classes = {
     root: clsx('relative block rounded shadow-sm', className),
     input: clsx(
-      'peer w-full rounded px-10 py-3 placeholder:font-thin placeholder:text-neutral-400'
+      'peer w-full rounded px-10 py-3 placeholder:font-thin placeholder:text-neutral-400 focus:outline-none focus:ring-inset focus:ring-accent-400 focus:ring-1'
     ),
     icon: clsx(
       'absolute left-2.5 top-1/2 h-6 w-6 -translate-y-1/2 text-neutral-400'

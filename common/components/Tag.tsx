@@ -15,14 +15,9 @@ export function Tag({
   iconClass,
   children,
 }: TagProps): JSX.Element {
-  const classes = {
-    root: clsx('flex items-center text-sm', className),
-    icon: clsx('mr-1.5 h-5 w-5', iconClass),
-  };
-
   return (
-    <div className={classes.root}>
-      <Icon className={classes.icon} />
+    <div className={clsx('flex items-center gap-1 text-sm', className)}>
+      <Icon className={clsx('h-5 w-5', iconClass)} />
       {children}
     </div>
   );

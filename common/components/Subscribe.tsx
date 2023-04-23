@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { RiMailLine } from 'react-icons/ri';
+import { RiAtLine } from 'react-icons/ri';
 import { Button } from './Button';
 import { Input } from './Input';
 
@@ -26,7 +26,7 @@ export function Subscribe({ className }: SubscribeProps): JSX.Element {
       <form className="mb-4">
         <Input
           className="mb-3 w-full"
-          icon={RiMailLine}
+          icon={RiAtLine}
           placeholder="Email Address"
         />
         <Button className="w-full uppercase" variant="accent">

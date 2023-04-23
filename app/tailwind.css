@@ -13,6 +13,10 @@
     @apply border border-transparent;
   }
 
+  input {
+    @apply border border-transparent;
+  }
+
   svg {
     @apply block;
   }
@@ -30,7 +34,7 @@
     @apply mb-4 font-secondary text-2xl font-bold;
   }
   .title-page {
-    @apply mb-6 border-b pb-4 font-secondary text-2xl font-bold;
+    @apply mb-6 font-secondary text-2xl font-bold md:border-b md:pb-4;
   }
 
   .link {

@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { Route } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { RiCalendarLine, RiTimerLine } from 'react-icons/ri';
+import { RiAlarmLine, RiCalendarLine } from 'react-icons/ri';
 import { routes } from '~/common/constants';
 import { formatDateToNow, formatDuration } from '~/common/helpers';
 import { Recipe } from '~/common/types';
@@ -44,7 +44,7 @@ export function RecipeCard({
         {isVisible.tags && (
           <div className={classes.tagsWrap}>
             <Tag icon={RiCalendarLine}>{createdText}</Tag>
-            <Tag icon={RiTimerLine}>{timeText}</Tag>
+            <Tag icon={RiAlarmLine}>{timeText}</Tag>
           </div>
         )}
       </div>

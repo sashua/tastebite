@@ -23,7 +23,7 @@ export function MobileMenu(): JSX.Element {
             <Popover.Button
               as={IconButton}
               icon={open ? RiCloseLine : RiMenuLine}
-              aria-label="open mobile menu"
+              aria-label={open ? 'Open menu' : 'Close menu'}
             />
             <Popover.Overlay className="fixed inset-x-0 bottom-0 top-14 bg-black/30" />
             <Popover.Panel
