@@ -2,15 +2,13 @@ import clsx from 'clsx';
 import { Route } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { RiAlarmLine, RiCalendarLine } from 'react-icons/ri';
+import { RiAlarmLine, RiFundsLine } from 'react-icons/ri';
 import { routes } from '~/common/constants';
-import { formatDateToNow, formatDuration } from '~/common/helpers';
+import { formatDuration } from '~/common/helpers';
 import { Recipe } from '~/common/types';
-import { Author } from './Author';
 import { Rating } from './Rating';
 import { Tag } from './Tag';
-
-type RecipeCardVariant = 'default' | 'simple';
+type RecipeCardVariant = 'default' | 'featured' | 'simple';
 
 interface RecipeCardProps {
   className?: string;
@@ -23,14 +21,16 @@ export function RecipeCard({
   data,
   variant = 'default',
 }: RecipeCardProps): JSX.Element {
-  const { id, name, author, imageFile, cookInfo, statistics, createdAt } = data;
+  const { id, name, imageFile, description, cookInfo, statistics } = data;
   const classes = getClasses({ variant, className });
   const isVisible = getIsVisible(variant);
 
   const href = `${routes.recipes}/${id}` as Route;
   const src = `/images/recipes/${imageFile}`;
   const timeText = formatDuration(cookInfo.prepTime + cookInfo.cookTime);
-  const createdText = formatDateToNow(createdAt);
+  const repeatText = `${Math.round(
+    statistics.averageRepeat * 100
+  )}% Would make this again`;
 
   return (
     <Link className={classes.root} href={href}>
@@ -38,13 +38,23 @@ export function RecipeCard({
         <Image className={classes.image} src={src} alt={name} fill />
       </div>
       <div className={classes.bottomWrap}>
-        {isVisible.rating && <Rating value={statistics.averageRating} />}
+        {isVisible.topTags && (
+          <div className={classes.topTags}>
+            <Tag icon={RiFundsLine}>{repeatText}</Tag>
+          </div>
+        )}
+        {isVisible.rating && (
+          <Rating className={classes.rating} value={statistics.averageRating} />
+        )}
         <h3 className={classes.title}>{name}</h3>
-        {isVisible.author && <Author name={author.name} avatarUrl="" />}
-        {isVisible.tags && (
-          <div className={classes.tagsWrap}>
-            <Tag icon={RiCalendarLine}>{createdText}</Tag>
-            <Tag icon={RiAlarmLine}>{timeText}</Tag>
+        {isVisible.description && (
+          <p className={classes.description}>{description}</p>
+        )}
+        {isVisible.bottomTags && (
+          <div className={classes.bottomTags}>
+            <Tag size="sm" icon={RiAlarmLine}>
+              {timeText}
+            </Tag>
           </div>
         )}
       </div>
@@ -54,9 +64,10 @@ export function RecipeCard({
 
 function getIsVisible(variant: RecipeCardVariant) {
   return {
+    topTags: variant === 'featured',
     rating: variant === 'default',
-    author: variant === 'default',
-    tags: variant === 'default',
+    description: variant === 'featured',
+    bottomTags: variant === 'default' || variant === 'featured',
   };
 }
 
@@ -69,6 +80,8 @@ function getClasses({
       'group block overflow-hidden transition-shadow',
       {
         'rounded-xl shadow hover:shadow-md': variant === 'default',
+        'rounded-xl shadow hover:shadow-md bg-secondary-100':
+          variant === 'featured',
         'rounded shadow-sm hover:shadow': variant === 'simple',
       },
       className
@@ -77,15 +90,23 @@ function getClasses({
     image: 'object-cover transition-transform group-hover:scale-[1.01]',
     bottomWrap: clsx('border-t', {
       'p-6': variant === 'default',
+      'px-6 py-8': variant === 'featured',
       'px-2 pb-3 pt-2': variant === 'simple',
     }),
+    topTags: 'flex gap-6 mb-4',
+    rating: 'mb-4',
     title: clsx(
       'font-semibold underline decoration-transparent underline-offset-2 transition-colors group-hover:decoration-accent',
       {
-        'mb-4 mt-2 text-xl': variant === 'default',
+        'text-xl': variant === 'default',
+        'font-secondary text-3xl': variant === 'featured',
         'text-center text-sm leading-snug': variant === 'simple',
       }
     ),
-    tagsWrap: 'mt-8 flex justify-end gap-6 text-neutral-900',
+    description: 'mt-4 text-thin line-clamp-3',
+    bottomTags: clsx('flex justify-end gap-6', {
+      'mt-4': variant === 'default',
+      'mt-6': variant === 'featured',
+    }),
   };
 }

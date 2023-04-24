@@ -2,7 +2,7 @@ import { CollectionCard, RecipeCard, Subscribe } from '~/common/components';
 import { getCollections, getRecipes } from '~/common/utils';
 
 export default function HomePage(): JSX.Element {
-  const superRecipes = getRecipes(6);
+  const [featuredRecipe, ...superRecipes] = getRecipes(7);
   const latestRecipes = getRecipes(16);
   const popularCollections = getCollections(6);
 
@@ -10,6 +10,11 @@ export default function HomePage(): JSX.Element {
     <>
       <section className="section">
         <div className="container">
+          <RecipeCard
+            className="mb-8"
+            variant="featured"
+            data={featuredRecipe}
+          />
           <h2 className="title-md">Super delicious</h2>
           <ul className="list-md">
             {superRecipes.map(item => (
