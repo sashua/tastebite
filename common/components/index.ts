@@ -1,4 +1,5 @@
 export * from './Author';
+export * from './Avatar';
 export * from './Button';
 export * from './Checkbox';
 export * from './CollectionCard';

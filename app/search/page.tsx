@@ -15,7 +15,7 @@ export default function SearchPage(): JSX.Element {
               (12 Recipes)
             </span>
             <input
-              className="w-full border-b-black px-8 py-2 text-sm transition-colors placeholder:text-neutral-400 focus:shadow-[0_1px_0_#000] focus:outline-none"
+              className="w-full border-b border-b-[theme(colors.black)] px-8 py-2 text-sm outline-none transition-colors placeholder:text-neutral-400 focus:shadow-[inset_0_-1px_0_theme(colors.accent.500)]"
               type="text"
             />
           </label>

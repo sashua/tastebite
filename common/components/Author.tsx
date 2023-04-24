@@ -18,7 +18,7 @@ export function Author({
 
   return (
     <div className={classes.root}>
-      <Avatar className="shrink-0" name={name} src={avatarUrl} />
+      <Avatar className="shrink-0" size="sm" name={name} src={avatarUrl} />
       {name}
     </div>
   );

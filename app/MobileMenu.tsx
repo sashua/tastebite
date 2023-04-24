@@ -12,6 +12,7 @@ const links = [
   { name: 'Collections', href: routes.collections },
   { name: 'Search', href: routes.search },
   { name: 'About', href: routes.about },
+  { name: 'Profile', href: routes.profile },
 ];
 
 export function MobileMenu(): JSX.Element {

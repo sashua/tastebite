@@ -4,6 +4,7 @@ export const routes: Record<string, Route> = {
   about: '/about',
   collections: '/collections',
   homepage: '/',
-  search: '/search',
+  profile: '/profile',
   recipes: '/recipes' as Route,
+  search: '/search',
 } as const;

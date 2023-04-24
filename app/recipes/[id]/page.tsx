@@ -89,7 +89,9 @@ export default function RecipePage({
             <InstructionsList data={instructions} />
             <div className="border-b-8 border-b-accent py-6 text-center">
               <h3 className="title-md">Already made this?</h3>
-              <Button variant="bordered">Share your feedback</Button>
+              <Button variant="bordered" size="lg">
+                Share your feedback
+              </Button>
             </div>
           </div>
         </section>

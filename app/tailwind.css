@@ -14,7 +14,7 @@
   }
 
   input {
-    @apply border border-transparent;
+    @apply border border-transparent outline-none;
   }
 
   svg {
