@@ -2,7 +2,7 @@ import { Route } from 'next';
 
 export const routes: Record<string, Route> = {
   about: '/about',
-  collections: '/collections',
+  categories: '/categories',
   homepage: '/',
   profile: '/profile',
   recipes: '/recipes' as Route,

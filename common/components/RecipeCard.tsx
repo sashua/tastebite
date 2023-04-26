@@ -1,3 +1,4 @@
+import { Recipe } from '@prisma/client';
 import clsx from 'clsx';
 import { Route } from 'next';
 import Image from 'next/image';
@@ -5,7 +6,6 @@ import Link from 'next/link';
 import { RiAlarmLine, RiFundsLine } from 'react-icons/ri';
 import { routes } from '~/common/constants';
 import { formatDuration } from '~/common/helpers';
-import { Recipe } from '~/common/types';
 import { Rating } from './Rating';
 import { Tag } from './Tag';
 type RecipeCardVariant = 'default' | 'featured' | 'simple';
@@ -21,15 +21,24 @@ export function RecipeCard({
   data,
   variant = 'default',
 }: RecipeCardProps): JSX.Element {
-  const { id, name, imageFile, description, cookInfo, statistics } = data;
+  const {
+    id,
+    name,
+    imageUrl,
+    description,
+    prepTime,
+    cookTime,
+    averageRating,
+    averageRepeat,
+  } = data;
   const classes = getClasses({ variant, className });
   const isVisible = getIsVisible(variant);
 
   const href = `${routes.recipes}/${id}` as Route;
-  const src = `/images/recipes/${imageFile}`;
-  const timeText = formatDuration(cookInfo.prepTime + cookInfo.cookTime);
+  const src = `/images/recipes/${imageUrl}`;
+  const timeText = prepTime && cookTime && formatDuration(prepTime + cookTime);
   const repeatText = `${Math.round(
-    statistics.averageRepeat * 100
+    averageRepeat * 100
   )}% Would make this again`;
 
   return (
@@ -44,7 +53,7 @@ export function RecipeCard({
           </div>
         )}
         {isVisible.rating && (
-          <Rating className={classes.rating} value={statistics.averageRating} />
+          <Rating className={classes.rating} value={averageRating} />
         )}
         <h3 className={classes.title}>{name}</h3>
         {isVisible.description && (

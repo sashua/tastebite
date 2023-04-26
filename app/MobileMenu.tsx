@@ -9,7 +9,7 @@ import { routes } from '~/common/constants';
 
 const links = [
   { name: 'Homepage', href: routes.homepage },
-  { name: 'Collections', href: routes.collections },
+  { name: 'Categories', href: routes.categories },
   { name: 'Search', href: routes.search },
   { name: 'About', href: routes.about },
   { name: 'Profile', href: routes.profile },

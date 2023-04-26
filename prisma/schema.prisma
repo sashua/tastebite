@@ -1,0 +1,129 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name      String
+  email     String  @unique
+  avatarUrl String?
+
+  password    String
+  accessToken String?
+
+  ownRecipes      Recipe[]   @relation("UserOwnRecipe")
+  favoriteRecipes Recipe[]   @relation("UserFavoriteRecipe")
+  feedbacks       Feedback[]
+
+  pageUrl__ String?
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String  @unique
+  description String?
+  imageUrl    String?
+
+  recipes Recipe[]
+
+  imageUrl__ String?
+}
+
+model Recipe {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  ownerId    String
+  categoryId String
+
+  name        String
+  description String?
+  imageUrl    String?
+
+  prepTime   Int?
+  cookTime   Int?
+  difficulty Int?
+  servings   Int?
+
+  averageRating  Float @default(0)
+  averageRepeat  Float @default(0)
+  totalFeedbacks Int   @default(0)
+
+  owner         User                @relation("UserOwnRecipe", fields: [ownerId], references: [id])
+  category      Category            @relation(fields: [categoryId], references: [id])
+  tags          Tag[]
+  ingredients   RecipeIngredient[]
+  instructions  RecipeInstruction[]
+  usersFavorite User[]              @relation("UserFavoriteRecipe")
+  feedbacks     Feedback[]
+
+  pageUrl__  String?
+  imageUrl__ String?
+}
+
+model RecipeIngredient {
+  recipeId String
+  order    Int
+
+  quantity    Float
+  measureName String
+  name        String
+  comment     String?
+  section     String?
+
+  recipe  Recipe  @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  measure Measure @relation(fields: [measureName], references: [name])
+
+  @@id([recipeId, order])
+}
+
+model RecipeInstruction {
+  recipeId String
+  order    Int
+
+  text    String
+  section String?
+
+  recipe Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@id([recipeId, order])
+}
+
+model Feedback {
+  recipeId  String
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  rating       Int
+  shouldRepeat Boolean
+
+  user   User   @relation(fields: [userId], references: [id])
+  recipe Recipe @relation(fields: [recipeId], references: [id])
+
+  @@id([recipeId, userId])
+}
+
+model Measure {
+  name String @id
+
+  ingredients RecipeIngredient[]
+}
+
+model Tag {
+  name String @id
+
+  recipes Recipe[]
+}

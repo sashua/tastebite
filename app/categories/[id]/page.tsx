@@ -1,21 +1,21 @@
+import { Category, Recipe } from '@prisma/client';
 import { RecipeCard } from '~/common/components';
-import { getCollection, getRecipesByCollectionName } from '~/common/utils';
 
-interface CollectionPageProps {
+interface CategoryPageProps {
   params: { id: string };
 }
 
-export default function CollectionPage({
+export default function CategoryPage({
   params: { id },
-}: CollectionPageProps): JSX.Element {
-  const collection = getCollection(id);
-  const recipes = getRecipesByCollectionName(collection?.name ?? '', 12);
+}: CategoryPageProps): JSX.Element {
+  const category: Partial<Category> = { id };
+  const recipes: Recipe[] = [];
 
-  if (!collection) {
+  if (!category) {
     return <p>Loading...</p>;
   }
 
-  const { name, description } = collection;
+  const { name, description } = category;
 
   return (
     <section className="section">

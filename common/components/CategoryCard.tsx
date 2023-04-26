@@ -2,22 +2,22 @@ import clsx from 'clsx';
 import { Route } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Collection } from '~/common/types';
+import { Category } from '~/common/types';
 import { routes } from '../constants';
 
-interface CollectionCardProps {
+interface CategoryCardProps {
   className?: string;
-  data: Collection;
+  data: Category;
 }
 
-export function CollectionCard({
+export function CategoryCard({
   className,
   data,
-}: CollectionCardProps): JSX.Element {
-  const { id, name, imageFile } = data;
+}: CategoryCardProps): JSX.Element {
+  const { id, name, imageUrl } = data;
 
-  const href = `${routes.collections}/${id}` as Route;
-  const src = `/images/collections/${imageFile}`;
+  const href = `${routes.categories}/${id}` as Route;
+  const src = `/images/categories/${imageUrl}`;
 
   return (
     <Link className={clsx('group block', className)} href={href}>
