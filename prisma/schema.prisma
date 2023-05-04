@@ -8,14 +8,11 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id String @id @default(cuid())
 
-  name      String
-  email     String  @unique
-  avatarUrl String?
-
+  name        String
+  email       String  @unique
+  avatarUrl   String?
   password    String
   accessToken String?
 
@@ -23,13 +20,13 @@ model User {
   favoriteRecipes Recipe[]   @relation("UserFavoriteRecipe")
   feedbacks       Feedback[]
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   pageUrl__ String?
 }
 
 model Category {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id String @id @default(cuid())
 
   name        String  @unique
   description String?
@@ -37,17 +34,16 @@ model Category {
 
   recipes Recipe[]
 
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
   imageUrl__ String?
 }
 
 model Recipe {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id String @id @default(cuid())
 
-  ownerId    String
-  categoryId String
-
+  ownerId     String
+  categoryId  String
   name        String
   description String?
   imageUrl    String?
@@ -69,6 +65,8 @@ model Recipe {
   usersFavorite User[]              @relation("UserFavoriteRecipe")
   feedbacks     Feedback[]
 
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
   pageUrl__  String?
   imageUrl__ String?
 }
@@ -102,16 +100,17 @@ model RecipeInstruction {
 }
 
 model Feedback {
-  recipeId  String
-  userId    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  recipeId String
+  userId   String
 
   rating       Int
   shouldRepeat Boolean
 
   user   User   @relation(fields: [userId], references: [id])
   recipe Recipe @relation(fields: [recipeId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@id([recipeId, userId])
 }

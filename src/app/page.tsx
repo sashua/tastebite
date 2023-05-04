@@ -21,7 +21,7 @@ export default async function HomePage(): Promise<JSX.Element> {
         <div className="container">
           {popularRecipes.length > 0 && (
             <RecipeCard
-              className="mb-8"
+              className="mb-10 sm:mb-12 md:mb-16 lg:mb-20"
               variant="featured"
               data={popularRecipes[0]}
             />

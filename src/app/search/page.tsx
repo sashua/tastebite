@@ -1,45 +1,72 @@
-import { RiCloseLine, RiSearch2Line } from 'react-icons/ri';
-import { IconButton, RecipeCard } from '~/components';
-import { getLatestRecipes } from '~/services/api';
+'use client';
 
-export default async function SearchPage(): Promise<JSX.Element> {
-  const foundRecipes = await getLatestRecipes(12);
+import { Recipe } from '@prisma/client';
+import axios from 'axios';
+import { useCallback } from 'react';
+import useSWRInfinite from 'swr/infinite';
+import { Button, RecipeCard } from '~/components';
+import { SearchForm } from './SearchForm';
+
+const PAGE_SIZE = 4;
+
+type SearchPageProps = {
+  searchParams: Record<string, string>;
+};
+
+const fetcher = async (url: string) => {
+  const { data } = await axios.get(url);
+  return data;
+};
+
+export default function SearchPage({ searchParams }: SearchPageProps) {
+  const searchQuery = searchParams.q;
+
+  const getKey = useCallback(
+    (page: number, prevData: Recipe[]) => {
+      if (prevData && prevData.length !== PAGE_SIZE) {
+        return null;
+      }
+      return `/api/recipes?q=${searchQuery}&page=${
+        page + 1
+      }&limit=${PAGE_SIZE}`;
+    },
+    [searchQuery]
+  );
+
+  const { data, isLoading, setSize } = useSWRInfinite<Recipe[]>(
+    getKey,
+    fetcher,
+    { revalidateFirstPage: false }
+  );
+
+  const handleLoadMore = () => {
+    setSize(size => size + 1);
+  };
+
+  const recipes = data?.flat();
+  const hasNextPage = (data?.at(-1)?.length ?? 0) >= PAGE_SIZE;
 
   return (
     <section className="section">
       <div className="container">
         <h1 className="title-page">Search results</h1>
-        <form className="relative mb-6">
-          <label>
-            <span className="pointer-events-none absolute right-8 top-1/2 -translate-y-1/2 text-xs">
-              (12 Recipes)
-            </span>
-            <input
-              className="w-full border-b border-b-[theme(colors.black)] px-8 py-2 text-sm outline-none transition-colors placeholder:text-neutral-400 focus:shadow-[inset_0_-1px_0_theme(colors.accent.500)]"
-              type="text"
-            />
-          </label>
-          <IconButton
-            className="absolute left-0 top-1/2 -translate-y-1/2"
-            icon={RiSearch2Line}
-            type="submit"
-            aria-label="Search recipes"
-          />
-          <IconButton
-            className="absolute right-0 top-1/2 -translate-y-1/2"
-            icon={RiCloseLine}
-            type="reset"
-            aria-label="Clear search"
-          />
-        </form>
+        <SearchForm query={searchQuery} total={0} />
 
-        <ul className="list-sm">
-          {foundRecipes?.map(recipe => (
+        <ul className="list-sm mb-10">
+          {recipes?.map(recipe => (
             <li key={recipe.id}>
               <RecipeCard className="h-full" data={recipe} variant="simple" />
             </li>
           ))}
         </ul>
+
+        {hasNextPage && (
+          <div className="text-center">
+            <Button variant="bordered" size="sm" onClick={handleLoadMore}>
+              Load more
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

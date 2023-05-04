@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { getRandomDate } from './getRandomDate';
 import { Category__ } from './types';
 
 export async function createCategories(
@@ -10,6 +11,7 @@ export async function createCategories(
       name,
       description,
       imageUrl,
+      createdAt: getRandomDate(new Date(2023, 1, 5), new Date(2023, 1, 15)),
       imageUrl__,
     })
   );

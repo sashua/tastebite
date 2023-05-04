@@ -21,7 +21,9 @@ export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
     >
       <body className="flex min-h-screen flex-col font-primary">
         <Header />
-        <main className="mt-14 grow py-4">{children}</main>
+        <main className="mt-14 grow py-4 sm:mt-0 sm:py-8 lg:py-12">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

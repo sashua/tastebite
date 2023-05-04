@@ -1,7 +1,8 @@
 import { PrismaClient, Recipe } from '@prisma/client';
+import { getRandomDate } from './getRandomDate';
 import { Recipe__ } from './types';
 
-type CreateRecipe = Omit<Recipe, 'id' | 'createdAt' | 'updatedAt'>;
+type CreateRecipe = Omit<Recipe, 'id' | 'updatedAt'>;
 
 export async function createRecipes(prisma: PrismaClient, recipes: Recipe__[]) {
   const admin = await prisma.user.findUnique({
@@ -41,6 +42,7 @@ export async function createRecipes(prisma: PrismaClient, recipes: Recipe__[]) {
       averageRating,
       averageRepeat,
       totalFeedbacks,
+      createdAt: getRandomDate(new Date(2023, 2, 1), new Date()),
       pageUrl__: original.pageUrl,
       imageUrl__: original.imageUrl,
     };

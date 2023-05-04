@@ -37,13 +37,16 @@ function getClasses({
     root: clsx(
       'flex items-center',
       {
-        'gap-1 text-xs': size === 'sm',
-        'gap-1.5 text-sm': size === 'md',
+        'gap-1 text-xs lg:text-sm': size === 'sm',
+        'gap-1.5 text-sm lg:text-base': size === 'md',
       },
       className
     ),
     icon: clsx(
-      { 'h-5 w-5': size === 'sm', 'h-6 w-6': size === 'md' },
+      {
+        'h-5 w-5 lg:h-6 lg:w-6': size === 'sm',
+        'h-6 w-6': size === 'md',
+      },
       iconClass
     ),
   };

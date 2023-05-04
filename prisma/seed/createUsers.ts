@@ -1,10 +1,12 @@
 import { PrismaClient } from '@prisma/client';
+import { getRandomDate } from './getRandomDate';
 import { Recipe__ } from './types';
 
 const admin = {
   name: 'Tastebite Team',
   email: 'tastebite@gmail.com',
   password: 'tastebite',
+  createdAt: new Date(2023, 1, 1),
 };
 
 export async function createUsers(prisma: PrismaClient, recipes: Recipe__[]) {
@@ -20,6 +22,7 @@ export async function createUsers(prisma: PrismaClient, recipes: Recipe__[]) {
     name,
     email: name.split(' ').join('.').toLowerCase() + '@gmail.com',
     password: 'password',
+    createdAt: getRandomDate(new Date(2023, 1, 5), new Date(2023, 1, 25)),
     pageUrl__: href,
   }));
 

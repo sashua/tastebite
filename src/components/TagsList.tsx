@@ -14,7 +14,7 @@ export function TagsList({
   iconClass,
 }: TagsListProps): JSX.Element {
   const classes = {
-    root: clsx('flex flex-wrap gap-4', className),
+    root: clsx('flex flex-wrap gap-4 sm:gap-6 lg:gap-8', className),
   };
 
   return (

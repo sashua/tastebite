@@ -29,8 +29,8 @@ export function CategoryCard({
           fill
         />
       </div>
-      <div className="p-2">
-        <h3 className="text-center text-sm font-semibold leading-snug underline decoration-transparent underline-offset-2 transition-colors group-hover:decoration-accent">
+      <div className="p-2 sm:p-3 md:p-2 lg:p-3">
+        <h3 className="text-center text-sm font-semibold leading-snug underline decoration-transparent underline-offset-2 transition-colors group-hover:decoration-accent sm:text-lg md:text-sm lg:text-lg xl:text-xl">
           {name}
         </h3>
       </div>

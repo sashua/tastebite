@@ -48,6 +48,7 @@ export const getRelatedRecipes = async ({
     take: limit,
     where: {
       categoryId: recipe.categoryId,
+      NOT: { id: recipe.id },
     },
     orderBy: { averageRepeat: 'desc' },
   });

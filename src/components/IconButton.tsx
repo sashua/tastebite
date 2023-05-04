@@ -8,10 +8,7 @@ interface IconButtonProps extends ComponentPropsWithoutRef<'button'> {
 }
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
-  function IconButton(
-    { className, icon: Icon, iconClass, ...props },
-    ref
-  ): JSX.Element {
+  function IconButton({ className, icon: Icon, iconClass, ...props }, ref) {
     const classes = {
       root: clsx(
         'rounded-full p-1 transition hover:text-accent active:scale-95',

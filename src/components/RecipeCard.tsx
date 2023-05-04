@@ -89,33 +89,37 @@ function getClasses({
       'group block overflow-hidden transition-shadow',
       {
         'rounded-xl shadow hover:shadow-md': variant === 'default',
-        'rounded-xl shadow hover:shadow-md bg-secondary-100':
+        'rounded-xl shadow hover:shadow-md bg-secondary-100 sm:flex':
           variant === 'featured',
-        'rounded shadow-sm hover:shadow': variant === 'simple',
+        'rounded': variant === 'simple',
       },
       className
     ),
-    imageWrap: 'relative aspect-classic overflow-hidden',
-    image: 'object-cover transition-transform group-hover:scale-[1.01]',
-    bottomWrap: clsx('border-t', {
-      'p-6': variant === 'default',
-      'px-6 py-8': variant === 'featured',
-      'px-2 pb-3 pt-2': variant === 'simple',
+    imageWrap: clsx('relative aspect-classic overflow-hidden', {
+      'sm:grow': variant === 'featured',
     }),
-    topTags: 'flex gap-6 mb-4',
-    rating: 'mb-4',
+    image: 'object-cover transition-transform group-hover:scale-[1.01]',
+    bottomWrap: clsx('flex flex-col justify-center gap-4', {
+      'p-6 border-t': variant === 'default',
+      'px-6 py-8 sm:w-1/2 md:w-2/5 lg:gap-6 lg:w-1/2 lg:px-12':
+        variant === 'featured',
+      'px-2 pb-4 pt-2': variant === 'simple',
+    }),
+    topTags: 'flex gap-6',
+    rating: '',
     title: clsx(
       'font-semibold underline decoration-transparent underline-offset-2 transition-colors group-hover:decoration-accent',
       {
         'text-xl': variant === 'default',
-        'font-secondary text-3xl': variant === 'featured',
-        'text-center text-sm leading-snug': variant === 'simple',
+        'font-secondary text-3xl sm:text-4xl lg:text-5xl':
+          variant === 'featured',
+        'text-center text-sm leading-snug md:text-base xl:text-lg':
+          variant === 'simple',
       }
     ),
-    description: 'mt-4 text-thin line-clamp-3',
-    bottomTags: clsx('flex justify-end gap-6', {
-      'mt-4': variant === 'default',
-      'mt-6': variant === 'featured',
+    description: clsx('text-thin line-clamp-3', {
+      'lg:text-lg': variant === 'featured',
     }),
+    bottomTags: clsx('flex justify-end gap-6'),
   };
 }

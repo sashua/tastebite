@@ -9,10 +9,13 @@ interface AuthorProps {
 
 export function Author({
   className,
-  data: {name, avatarUrl}
+  data: { name, avatarUrl },
 }: AuthorProps): JSX.Element {
   const classes = {
-    root: clsx('flex items-center gap-1.5 text-xs leading-none', className),
+    root: clsx(
+      'flex items-center gap-1.5 text-xs leading-none lg:text-base',
+      className
+    ),
   };
 
   return (

@@ -18,15 +18,20 @@ export function CookInfo({ className, data }: CookInfoProps): JSX.Element {
   const preparedData = prepareData(data);
 
   return (
-    <ul className={clsx('grid grid-cols-2 gap-x-1 gap-y-2', className)}>
+    <ul
+      className={clsx(
+        'grid grid-cols-2 gap-x-1 gap-y-2 md:grid-cols-4',
+        className
+      )}
+    >
       {preparedData.map(({ caption, text, icon: Icon }) => (
         <li key={caption} className="flex items-center">
-          <Icon className="mr-1.5 h-7 w-7 text-accent" />
+          <Icon className="mr-1.5 h-7 w-7 shrink-0 text-accent sm:h-8 sm:w-8 lg:h-10 lg:w-10" />
           <div className="flex flex-col">
-            <span className="text-xs font-light uppercase leading-tight text-neutral-700">
+            <span className="text-xs font-light uppercase leading-tight text-neutral-700 lg:text-sm">
               {caption}
             </span>
-            <span className="text-sm font-semibold uppercase leading-snug">
+            <span className="leading-6:text-base text-sm font-semibold uppercase leading-snug">
               {text}
             </span>
           </div>

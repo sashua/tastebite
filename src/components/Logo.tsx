@@ -9,12 +9,12 @@ interface LogoProps {
 
 export function Logo({ className }: LogoProps): JSX.Element {
   const classes = {
-    root: clsx('block w-24', className),
+    root: clsx('block w-24 sm:w-28 lg:w-32', className),
   };
 
   return (
     <Link className={classes.root} href="/" aria-label="homepage">
-      <Image src={logoImage} alt="Tastebite" width={96} priority />
+      <Image src={logoImage} width={128} alt="Tastebite" priority />
     </Link>
   );
 }

@@ -23,7 +23,9 @@ export default async function CategoryPage({
     <section className="section">
       <div className="container">
         <h1 className="title-page">{name}</h1>
-        <p className="mb-6 text-sm">{description}</p>
+        <p className="mb-6 text-sm sm:mb-8 sm:text-base md:mb-10 lg:mb-12 lg:text-lg xl:mb-14">
+          {description}
+        </p>
         <ul className="list-sm">
           {recipes?.map(recipe => (
             <li key={recipe.id}>

@@ -37,10 +37,13 @@ function getClasses({
         'text-black hover:text-accent': variant === 'flat',
       },
       {
-        'text-sm': size === 'xs',
-        'rounded-sm py-1.5 px-4 text-sm': size === 'sm',
-        'rounded py-2.5 px-6 text-base': size === 'md',
-        'rounded-md py-3 px-8 text-lg': size === 'lg',
+        'text-sm md:text-base': size === 'xs',
+        'rounded-sm py-1.5 px-4 text-sm md:py-2 md:px-8 md:text-base':
+          size === 'sm',
+        'rounded py-2.5 px-6 text-base md:py-3 md:px-12 md:text-lg':
+          size === 'md',
+        'rounded-md py-3 px-8 text-lg md:py-4 md:px-16 md:text-xl':
+          size === 'lg',
       },
       className
     ),

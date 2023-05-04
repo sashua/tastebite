@@ -5,15 +5,7 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 import { RiCloseLine, RiMenuLine } from 'react-icons/ri';
 import { IconButton } from '~/components';
-import { routes } from '~/constants';
-
-const links = [
-  { name: 'Homepage', href: routes.homepage },
-  { name: 'Categories', href: routes.categories },
-  { name: 'Search', href: routes.search },
-  { name: 'About', href: routes.about },
-  { name: 'Profile', href: routes.profile },
-];
+import { navLinks } from '~/constants';
 
 export function MobileMenu(): JSX.Element {
   return (
@@ -23,15 +15,16 @@ export function MobileMenu(): JSX.Element {
           <>
             <Popover.Button
               as={IconButton}
+              className="sm:hidden"
               icon={open ? RiCloseLine : RiMenuLine}
               aria-label={open ? 'Open menu' : 'Close menu'}
             />
-            <Popover.Overlay className="fixed inset-x-0 bottom-0 top-14 bg-black/30" />
+            <Popover.Overlay className="fixed inset-x-0 bottom-0 top-14 bg-black/30 sm:hidden" />
             <Popover.Panel
               as="ul"
-              className="container fixed inset-x-0 top-14 flex flex-col gap-6 bg-white pb-10 pt-6 text-sm shadow-sm"
+              className="container fixed inset-x-0 top-14 flex flex-col gap-6 bg-white pb-10 pt-6 text-sm shadow-sm sm:hidden"
             >
-              {links.map((item, i) => (
+              {navLinks.map((item, i) => (
                 <li key={i}>
                   <Link
                     className="transition-colors hover:text-accent"
